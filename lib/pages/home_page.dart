@@ -138,7 +138,60 @@ class _HomePageState extends State<HomePage> {
       ),
       child: ElevatedButton(
         onPressed: () {
-          // Show sign out confirmation dialog
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: Text(
+                  "Confirm Sign Out",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                    color: Colors.red,
+                  ),
+                ),
+                content: Text(
+                  "Are you sure you want to sign out?",
+                  style: TextStyle(
+                    fontSize: 16,
+                  ),
+                ),
+                actions: [
+                  TextButton(
+                    child: Text(
+                      "Cancel",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 16,
+                      ),
+                    ),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ElevatedButton(
+                    child: Text(
+                      "Sign Out",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                      ),
+                    ),
+                    onPressed: () {
+                      signOut();
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.red,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                    ),
+                  ),
+                ],
+              );
+            },
+          );
         },
         style: ElevatedButton.styleFrom(
           primary: Colors.transparent,
